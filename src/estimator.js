@@ -64,7 +64,7 @@ const covid19ImpactEstimator = (data) => {
   const checkEconomy = (cases, avgIncome, avgDailypop, periods) => (cases * avgIncome) * avgDailypop
   * periods;
 
-  const estimatedPeriod = numberOfDays(periodType, timeToElapse);
+  const estimatedPeriod = Math.trunc(numberOfDays(periodType, timeToElapse));
 
   impact.dollarsInFlight = checkEconomy(impact.infectionsByRequestedTime,
     region.avgDailyIncomeInUSD, region.avgDailyIncomePopulation,
