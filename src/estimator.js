@@ -13,7 +13,9 @@ const NumberOfDays = (periodType, timeToElapse) => {
 };
 
 const covid19ImpactEstimator = (data) => {
-  const { reportedCases, periodType, timeToElapse, totalHospitalBeds } = data;
+  const {
+     reportedCases, periodType, timeToElapse, totalHospitalBeds 
+    } = data;
 
   const impact = {};
   const severeImpact = {};
@@ -25,16 +27,13 @@ const covid19ImpactEstimator = (data) => {
 
   impact.infectionsByRequestedTime = impact.currentlyInfected * 2 ** projected;
 
-  severeImpact.infectionsByRequestedTime =
-    severeImpact.currentlyInfected * 2 ** projected;
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * 2 ** projected;
 
   // **************************************challenge two******************************************************
 
-  impact.severeCasesByRequestedTime =
-    (impact.infectionsByRequestedTime * 15) / 100; // calculating 15 percentage normal cases
+  impact.severeCasesByRequestedTime = (impact.infectionsByRequestedTime * 15) / 100; // calculating 15 percentage normal cases
 
-  severeImpact.severeCasesByRequestedTime =
-    (severeImpact.infectionsByRequestedTime * 15) / 100; // calculating 15 percentag of severecases
+  severeImpact.severeCasesByRequestedTime = (severeImpact.infectionsByRequestedTime * 15) / 100; // calculating 15 percentag of severecases
 
   // estimated hospital bed function
   const hospitalBedsByRequested = (severeCases) => {
