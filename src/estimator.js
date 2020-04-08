@@ -59,7 +59,8 @@ const covid19ImpactEstimator = (data) => {
 
   impact.casesForVentilatorsByRequestedTime = (impact.infectionsByRequestedTime * 2) / 100;
 
-  severeImpact.casesForVentilatorsByRequestedTime = (severeImpact.infectionsByRequestedTime * 2) / 100;
+  severeImpact.casesForVentilatorsByRequestedTime = (severeImpact.infectionsByRequestedTime * 2)
+  / 100;
 
   const checkEconomy = (cases, avgIncome, avgDailypop,
     periods) => cases * avgIncome * avgDailypop * periods;
