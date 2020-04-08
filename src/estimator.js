@@ -1,7 +1,7 @@
 const periodInDays = (months) => months * 30;
 const periodWeeks = (weeks) => weeks * 7;
 
-const NumberOfDays = (periodType, timeToElapse) => {
+const numberOfDays = (periodType, timeToElapse) => {
   switch (periodType) {
     case 'months':
       return periodInDays(timeToElapse);
@@ -14,7 +14,7 @@ const NumberOfDays = (periodType, timeToElapse) => {
 
 const covid19ImpactEstimator = (data) => {
   const {
-    reportedCases, periodType, timeToElapse, totalHospitalBeds,
+    reportedCases, periodType, timeToElapse, totalHospitalBeds, region,
   } = data;
 
   const impact = {};
@@ -23,7 +23,7 @@ const covid19ImpactEstimator = (data) => {
   impact.currentlyInfected = reportedCases * 10;
   severeImpact.currentlyInfected = reportedCases * 50;
 
-  const projected = Math.trunc(NumberOfDays(periodType, timeToElapse) / 3);
+  const projected = Math.trunc(numberOfDays(periodType, timeToElapse) / 3);
 
   impact.infectionsByRequestedTime = impact.currentlyInfected * 2 ** projected;
 
@@ -31,7 +31,7 @@ const covid19ImpactEstimator = (data) => {
 
   // *******************************challenge two*******************************
 
-  // calculating 15 percentage normal cases
+  // calculating 15 percentage impact cases
   impact.severeCasesByRequestedTime = (impact.infectionsByRequestedTime * 15) / 100;
 
   // calculating 15 percentag of severecases
@@ -50,6 +50,27 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.hospitalBedsByRequestedTime = hospitalBedsByRequested(
     severeImpact.severeCasesByRequestedTime,
   ); // call hospitalBedsByRequestedTime function for severeImpact cases
+
+  // *******************************challenge three*******************************
+
+  impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.5;
+
+  severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.5;
+
+  impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.2;
+
+  severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.2;
+
+  const checkEconomy = (cases, avgIncome, avgDailypop, estimated) => cases * avgIncome * avgDailypop
+  * estimated;
+
+  impact.dollarsInFlight = checkEconomy(impact.infectionsByRequestedTime,
+    region.avgDailyIncomeInUSD, region.avgDailyIncomePopulation,
+    numberOfDays(periodType, timeToElapse));
+
+  severeImpact.dollarsInFlight = checkEconomy(impact.infectionsByRequestedTime,
+    region.avgDailyIncomeInUSD, region.avgDailyIncomePopulation,
+    numberOfDays(periodType, timeToElapse));
 
   return {
     data,
