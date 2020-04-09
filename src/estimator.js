@@ -54,14 +54,17 @@ const covid19ImpactEstimator = (data) => {
 
   // *******************************challenge three*******************************
 
-  impact.casesForICUByRequestedTime = (impact.infectionsByRequestedTime * 5) / 100;
+  impact.casesForICUByRequestedTime = Math.trunc((impact.infectionsByRequestedTime * 5) / 100);
 
-  severeImpact.casesForICUByRequestedTime = (severeImpact.infectionsByRequestedTime * 5) / 100;
+  severeImpact.casesForICUByRequestedTime = Math.trunc((severeImpact.infectionsByRequestedTime
+    * 5) / 100);
 
-  impact.casesForVentilatorsByRequestedTime = (impact.infectionsByRequestedTime * 2) / 100;
+  impact.casesForVentilatorsByRequestedTime = Math.trunc((impact.infectionsByRequestedTime
+    * 2) / 100);
 
-  severeImpact.casesForVentilatorsByRequestedTime = (severeImpact.infectionsByRequestedTime * 2)
-  / 100;
+  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(
+    (severeImpact.infectionsByRequestedTime * 2) / 100,
+  );
 
   const checkEconomy = (cases, avgIncome, avgDailypop,
     periods) => cases * avgIncome * avgDailypop * periods;
