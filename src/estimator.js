@@ -26,7 +26,7 @@ const covid19ImpactEstimator = (data) => {
 
   const projected = Math.trunc(numberOfDays(periodType, timeToElapse) / 3);
 
-  impact.infectionsByRequestedTime = impact.currentlyInfected * 2 ** projected;
+  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** projected);
 
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected
     * 2 ** projected;
@@ -69,7 +69,7 @@ const covid19ImpactEstimator = (data) => {
     * 0.02);
 
   const checkEconomy = (cases, avgIncome, avgDailypop,
-    periods) => cases * avgIncome * avgDailypop * periods;
+    periods) => (cases * avgIncome * avgDailypop) / periods;
 
 
   const estimatedPeriod = numberOfDays(periodType, timeToElapse);
