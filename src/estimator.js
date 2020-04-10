@@ -73,12 +73,12 @@ const covid19ImpactEstimator = (data) => {
 
   const estimatedPeriod = numberOfDays(periodType, timeToElapse);
 
-  impact.dollarsInFlight = checkEconomy(impact.infectionsByRequestedTime,
+  impact.dollarsInFlight = Math.trunc(checkEconomy(impact.infectionsByRequestedTime,
     region.avgDailyIncomeInUSD, region.avgDailyIncomePopulation,
-    estimatedPeriod);
+    estimatedPeriod));
 
-  severeImpact.dollarsInFlight = checkEconomy(severeImpact.infectionsByRequestedTime,
-    region.avgDailyIncomeInUSD, region.avgDailyIncomePopulation, estimatedPeriod);
+  severeImpact.dollarsInFlight = Math.trunc(checkEconomy(severeImpact.infectionsByRequestedTime,
+    region.avgDailyIncomeInUSD, region.avgDailyIncomePopulation, estimatedPeriod));
 
 
   return {
