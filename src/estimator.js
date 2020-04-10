@@ -55,7 +55,7 @@ const covid19ImpactEstimator = (data) => {
 
   // *******************************challenge three*******************************
 
-  impact.casesForICUByRequestedTime = (impact.infectionsByRequestedTime * 5) / 100;
+  impact.casesForICUByRequestedTime = (impact.infectionsByRequestedTime * 0.05);
 
   severeImpact.casesForICUByRequestedTime = (severeImpact.infectionsByRequestedTime
     * 5) / 100;
