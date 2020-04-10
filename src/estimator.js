@@ -54,10 +54,10 @@ const covid19ImpactEstimator = (data) => {
 
   // *******************************challenge three*******************************
 
-  impact.casesForICUByRequestedTime = Math.trunc((impact.infectionsByRequestedTime * 5) / 100);
+  impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.05);
 
-  severeImpact.casesForICUByRequestedTime = Math.trunc((severeImpact.infectionsByRequestedTime
-    * 5) / 100);
+  severeImpact.casesForICUByRequestedTime = Math.trunc(severeImpact.infectionsByRequestedTime
+    * 0.05);
 
   impact.casesForVentilatorsByRequestedTime = Math.trunc((impact.infectionsByRequestedTime
     * 2) / 100);
