@@ -14,6 +14,7 @@ const numberOfDays = (periodType, timeToElapse) => {
 
 const covid19ImpactEstimator = (data) => {
   const {
+    // eslint-disable-next-line no-unused-vars
     reportedCases, periodType, timeToElapse, totalHospitalBeds, region,
   } = data;
 
@@ -62,8 +63,9 @@ const covid19ImpactEstimator = (data) => {
   impact.casesForVentilatorsByRequestedTime = (impact.infectionsByRequestedTime
     * 2) / 100;
 
-  severeImpact.casesForVentilatorsByRequestedTime = (
-    severeImpact.infectionsByRequestedTime * 2) / 100;
+  severeImpact.casesForVentilatorsByRequestedTime = (severeImpact.infectionsByRequestedTime
+    * 2) / 100;
+
 
   return {
     data,
