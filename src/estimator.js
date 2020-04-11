@@ -31,6 +31,7 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected
     * 2 ** projected;
 
+
   // *******************************challenge two*******************************
 
   // calculating 15 percentage impact cases
@@ -54,7 +55,8 @@ const covid19ImpactEstimator = (data) => {
     severeImpact.severeCasesByRequestedTime,
   ); // call hospitalBedsByRequestedTime function for severeImpact cases
 
-  // *******************************challenge three*********************************
+
+  // ************************challenge three*********************************
 
   impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.05);
 
